@@ -45,7 +45,7 @@ app.use(session({
     },
 
     store: MongoStore.create({
-        mongoUrl:"mongodb://127.0.0.1/project",
+        mongoUrl:"mongodb+srv://KPM111:b2vvNzYEcnzvmZX3@cluster0.rwpsel7.mongodb.net/?retryWrites=true&w=majority",
         mongooseConnection:db,
         autoRemove:'disabled',
 
