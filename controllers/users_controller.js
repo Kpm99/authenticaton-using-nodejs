@@ -4,9 +4,12 @@ const User=require('../models/user')
 
 //profile page
 module.exports.profile=async function(req,res){
-    
+    let user=await User.findById(req.params.id);
+
     return res.render('user_profile', {
-        title: 'User Profile'
+        title: 'User Profile',
+        user:user,
+        id:req.user.id
     })
       
 }
@@ -69,4 +72,27 @@ module.exports.destroySession=function(req,res){
     req.flash('success','logged out successfully')
     
     return res.redirect('/')
+}
+
+
+//reset password
+module.exports.reset_page=function(req,res){
+    return res.render('reset',{title:'Reset Page'})
+}
+
+module.exports.reset=async function(req,res){
+    const user=await User.findOne({email:req.body.email});
+    if(!user){
+        console.log('wrong email')
+        return res.redirect('back')       
+    }
+    if(user.password!=req.body.password){
+        console.log("wrong password")
+        return res.redirect('back');
+    }
+    await User.findByIdAndUpdate(req.body.email,{password:req.body.new_password})
+    
+    return res.redirect('/users/sign-up')
+
+
 }
