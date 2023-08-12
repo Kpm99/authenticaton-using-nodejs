@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 //connectiong to database
-mongoose.connect('mongodb://127.0.0.1/project');
+mongoose.connect('mongodb+srv://KPM111:b2vvNzYEcnzvmZX3@cluster0.rwpsel7.mongodb.net/?retryWrites=true&w=majority');
 const db=mongoose.connection;
 //cheecking error
 db.on('error',console.error.bind(console,'error in connectiong to db'));
