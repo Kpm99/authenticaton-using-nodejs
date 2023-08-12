@@ -65,11 +65,8 @@ app.use(custmonMware.setFlash)
 //routes
 app.use('/',require('./routes'))
 //server
-app.listen(port,function(err){
-    if(err){
-        console.log("error");
-        return;
-    }
 
-    console.log("server started at port:",port);
-})
+const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+server.keepAliveTimeout = 120 * 1000;
+server.headersTimeout = 120 * 1000;
